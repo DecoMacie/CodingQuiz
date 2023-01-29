@@ -1,14 +1,12 @@
 // Access toggle switch HTML element
 var buttonStart = document.querySelector("#start");
-var container = document.querySelector(".container");
+var container = document.querySelector(".wrapper");
 
 var timeEl = document.querySelector(".timer");
 
-// Selects element by id
-// var mainEl = document.getElementById("main");
-
 var secondsLeft = 0;
 
+// TIMER CODE START
 function setTime() {
   // Sets interval in variable
   secondsLeft = 60;
@@ -24,21 +22,24 @@ function setTime() {
 
   }, 1000);
 }
+// TIMER CODE END
 
-// Set default start to false
+// START BUTTON CODE START
+// Set default button start to false
 var start = false;
 
 // Listen for a click event on toggle switch
 buttonStart.addEventListener("click", function() {
-  // If start is dark, apply light background
+  // If start is false
   if (start === false) {
     start = true;
     setTime();
-    // container.setAttribute("class", "light");
+    container.setAttribute("class", "hide");
   }
-  // If start is light, apply dark background 
+  // If start is true 
   else {
     start = false;
     // container.setAttribute("class", "dark");
   }
 });
+// START BUTTON CODE END
