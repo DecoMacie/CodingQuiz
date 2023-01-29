@@ -1,12 +1,17 @@
+// Access toggle switch HTML element
+var buttonStart = document.querySelector("#start");
+var container = document.querySelector(".container");
+
 var timeEl = document.querySelector(".timer");
 
 // Selects element by id
 // var mainEl = document.getElementById("main");
 
-var secondsLeft = 60;
+var secondsLeft = 0;
 
 function setTime() {
   // Sets interval in variable
+  secondsLeft = 60;
   var timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = "Time: " + secondsLeft;
@@ -20,13 +25,20 @@ function setTime() {
   }, 1000);
 }
 
-// Function to create and append colorsplosion image
-// function sendMessage() {
-//   timeEl.textContent = " ";
-//   var imgEl = document.createElement("img");
-// //   imgEl.setAttribute("src", "images/image_1.jpg");
-//   mainEl.appendChild(imgEl);
+// Set default start to false
+var start = false;
 
-// }
-
-setTime();
+// Listen for a click event on toggle switch
+buttonStart.addEventListener("click", function() {
+  // If start is dark, apply light background
+  if (start === false) {
+    start = true;
+    setTime();
+    // container.setAttribute("class", "light");
+  }
+  // If start is light, apply dark background 
+  else {
+    start = false;
+    // container.setAttribute("class", "dark");
+  }
+});
