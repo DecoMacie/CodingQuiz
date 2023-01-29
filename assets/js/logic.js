@@ -30,10 +30,24 @@ function startQuiz(){
     container.children[0].setAttribute("class", "hide");
     container.children[1].setAttribute("class", "start");
 
-    
-    // let ul = question.createElement("ul");
+    question.insertAdjacentText("afterend",quizQuestions[clickCount].q);
+    var ul = document.createElement("ul");
+    ul.setAttribute("class","choices");
+    choice.appendChild(ul);
+
+    var list = quizQuestions[clickCount].a;
+    for (i = 0; i < list.length; i++){
+        var li = document.createElement("li");
+        var l = document.createTextNode(list[i].text);
+        li.appendChild(l);
+        ul.appendChild(li);
+    }
+
+    // var li = document.createElement("li");
+    // var l = document.createTextNode("stsrttt");
+    // li.appendChild(list);
+    // ul.appendChild(li);
     //   li.innerText = item;
-      question.insertAdjacentText("afterend",quizQuestions[clickCount].q);
 }
 
 // START BUTTON CODE START
