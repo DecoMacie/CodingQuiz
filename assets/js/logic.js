@@ -14,7 +14,6 @@ function setTime() {
     if(secondsLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      console.log(quizQuestions)
     }
 
   }, 1000);
@@ -42,18 +41,28 @@ function startQuiz(clickCount){
         var l = document.createTextNode(list[i].text);
         // alert(list[i].isCorrect);
         li.appendChild(l);
-        li.addEventListener("click", function() {rightWrong()}, false);
+        // li.addEventListener("click", function() {rightWrong(i)}, false);
         // li.onclick = rightWrong(list[i].isCorrect);
         // li.onclick = rightWrong();
         ul.appendChild(li);
+        // console.log(list[i].isCorrect);
     }
 
-    alert(li[0])
 
-    var opt1 = document.getElementById('opt0');
-    var opt2 = document.getElementById('opt1');
+    const opt1 = document.getElementById('opt0');
+    const opt2 = document.getElementById('opt1');
     var opt3 = document.getElementById('opt2');
     var opt4 = document.getElementById('opt3');
+
+    opt1.value = quizQuestions[clickCount].a[0].isCorrect;
+    opt2.value = quizQuestions[clickCount].a[1].isCorrect;
+    opt3.value = quizQuestions[clickCount].a[2].isCorrect;
+    opt4.value = quizQuestions[clickCount].a[3].isCorrect;
+    
+    opt1.addEventListener("click", function() {rightWrong(opt1.value)}, false)
+    opt2.addEventListener("click", function() {rightWrong(opt2.value)}, false)
+    opt3.addEventListener("click", function() {rightWrong(opt3.value)}, false)
+    opt4.addEventListener("click", function() {rightWrong(opt4.value)}, false)
 
     // opt1.addEventListener("click", function() {rightWrong()}, false);
 
@@ -65,15 +74,15 @@ function startQuiz(clickCount){
 }
 
 // function rightWrong(optionSel){
-function rightWrong(){
+function rightWrong(option){
 
-    // if (optionSel === true){
-    //     alert("Right");
-    // }
-    // else{
-    //     alert("Wrong");
-    // }
-    console.log(opt1)
+    if (option === 1){
+        alert("Right");
+    }
+    else{
+        alert("Wrong");
+    }
+    // console.log(option)
 }
 // START BUTTON CODE START
 // Set default button start to false
