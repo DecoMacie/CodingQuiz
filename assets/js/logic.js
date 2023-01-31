@@ -21,10 +21,10 @@ function setTime() {
 }
 // TIMER function CODE END
 
-function startQuiz(){
+function startQuiz(clickCount){
     // Sets interval in variable
-    secondsLeft = 6;
-    var clickCount = 0;
+    
+    
     var question = document.getElementById("question-title");
     var choice = document.getElementById("choices")
     container.children[0].setAttribute("class", "hide");
@@ -38,10 +38,24 @@ function startQuiz(){
     var list = quizQuestions[clickCount].a;
     for (i = 0; i < list.length; i++){
         var li = document.createElement("li");
+        li.id = "opt" + i;
         var l = document.createTextNode(list[i].text);
+        // alert(list[i].isCorrect);
         li.appendChild(l);
+        li.addEventListener("click", function() {rightWrong()}, false);
+        // li.onclick = rightWrong(list[i].isCorrect);
+        // li.onclick = rightWrong();
         ul.appendChild(li);
     }
+
+    alert(li[0])
+
+    var opt1 = document.getElementById('opt0');
+    var opt2 = document.getElementById('opt1');
+    var opt3 = document.getElementById('opt2');
+    var opt4 = document.getElementById('opt3');
+
+    // opt1.addEventListener("click", function() {rightWrong()}, false);
 
     // var li = document.createElement("li");
     // var l = document.createTextNode("stsrttt");
@@ -50,17 +64,29 @@ function startQuiz(){
     //   li.innerText = item;
 }
 
+// function rightWrong(optionSel){
+function rightWrong(){
+
+    // if (optionSel === true){
+    //     alert("Right");
+    // }
+    // else{
+    //     alert("Wrong");
+    // }
+    console.log(opt1)
+}
 // START BUTTON CODE START
 // Set default button start to false
-var start = false;
-
+// var start = false;
+var clickCount = 0;
 // Listen for a click event on toggle switch
 buttonStart.addEventListener("click", function() {
   // If start is false
-  if (start === false) {
+   if (clickCount <= quizQuestions.length) {
+    secondsLeft = 6;
     start = true;
     setTime();
-    startQuiz();
+    startQuiz(clickCount);
     // console.log(container.children[1]);
   }
   // If start is true 
